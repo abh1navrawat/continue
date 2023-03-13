@@ -1,0 +1,13 @@
+class Solution:
+    def calPoints(self, operations: List[str]) -> int:
+        cal = []
+        for i in operations:
+            if '+'==i:
+                cal.append(int(cal[-1])+int(cal[-2]))
+            elif 'D'==i:
+                cal.append(2*int(cal[-1]))
+            elif 'C'==i:
+                cal.pop()
+            else:
+                cal.append(int(i))
+        return sum(cal)
