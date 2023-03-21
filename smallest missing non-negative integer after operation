@@ -1,0 +1,17 @@
+class Solution:
+    def findSmallestInteger(self, nums: List[int], value: int) -> int:
+        dic = {}
+        for i in nums:
+            temp = i%value
+            if temp in dic.keys():
+                dic[temp] +=1
+            else:
+                dic[temp] = 1
+        val=0
+        while True:
+            temp = val%value
+            if temp in dic.keys() and dic[temp]>0:
+                dic[temp] -= 1
+                val += 1
+            else:
+                return val
