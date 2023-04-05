@@ -1,0 +1,15 @@
+how to find a square root of any number without using any built-in function
+
+
+
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        for i in range(46341):
+            p=i*i
+            if p==x:
+                print(i)
+                break
+            if p>=x:
+                i=i-1
+                break
+        return i
