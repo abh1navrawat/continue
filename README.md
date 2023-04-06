@@ -1,0 +1,3 @@
+# continue
+these are all easy question in github
+medium and hard types will be coming later...
