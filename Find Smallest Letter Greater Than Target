@@ -1,0 +1,7 @@
+class Solution:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        n=0
+        for n in letters:
+            if n>target:
+                return n
+        return letters[0]
