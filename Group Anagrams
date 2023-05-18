@@ -1,0 +1,16 @@
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        dict1={}
+        for i in strs:
+            key=''.join(sorted(i))
+            if key in dict1:
+                dict1[key].append(i)
+            else:
+                dict1[key]=[i]
+        return list(dict1.values())
