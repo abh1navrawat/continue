@@ -23,7 +23,6 @@ Constraints:
 1 <= temperatures.length <= 105
 30 <= temperatures[i] <= 100
 
-(]
 range(optional::)
 
 Solution: BruteForce: TLE : O(n^2) 
@@ -39,6 +38,27 @@ class Solution:
                 if temperatures[i]<temperatures[j]:
                     answer.append(j-i)
                     break
+
+
+
+solution 2
+explanation - we create a empty stack, thewhile loop check whether the stack has a element and if it contains a ele it checks whether the next element is greater than that one.
+
+
+
+
+
+
+class Solution:
+    def dailyTemperatures(self, tempterature: List[int]) -> List[int]:
+        ans = [0]*len(temperature) 
+        stack = []
+        for i,v in enumerate(temperature):
+            while stack and stack[-1][1] < v:
+                index,value = stack.pop()
+                ans[index] = i - index 
+            stack.append([i,v]) 
+        return ans
                 if j==len(temperatures)-1:
                     answer.append(0)
         answer.append(0)
