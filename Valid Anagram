@@ -1,0 +1,26 @@
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+
+
+
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        dic={}
+        duc={}
+        for val in s:
+            if val in dic:
+                dic[val]+=1
+            else:
+                dic[val]=1
+        for j in t:
+            if j in duc:
+                duc[j]+=1
+            else:
+                duc[j]=1
+        print(dic)
+        print(duc)
+        if duc==dic:return True
+        else:return False
