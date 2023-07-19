@@ -6,19 +6,18 @@ Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without
 
 
 
+
+intuition -  create a result array. Loop i and j in the range of 9. Create a variable named element that contains board ith and jth element. 
+             Now there will be 3 tuples, first tuple contains element if i and row index. Second contains element of j and row index. 
+             3rd element represent 3x3 grid. If element is not equal to ".",then add it to result array. At last check whether the length of array result and length
+             of set result is same.
+             
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        checker = defaultdict(set)
+        res = []
         for i in range(9):
             for j in range(9):
-                if board[i][j]==".":
-                    continue
-
-                box = (i//3,j//3)
-                if board[i][j] in checker[i] or board[i][j] in checker[j+9] or board[i][j] in checker[box]:
-                    return False
-                else:
-                    checker[i].add(board[i][j])
-                    checker[j+9].add(board[i][j])
-                    checker[box].add(board[i][j])
-        return True
+                element = board[i][j]
+                if element != '.':
+                    res += [(i, element), (element, j), (i // 3, j // 3, element)]
+        return len(res) == len(set(res))
