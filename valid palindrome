@@ -3,13 +3,25 @@ A phrase is a palindrome if, after converting all uppercase letters into lowerca
 Given a string s, return true if it is a palindrome, or false otherwise
 
 
+
+
+
+intuition -  for this problem we go from left and right side at the same time.convert it to lower and check if a and b is alphanumeric.
+	     Then check hether a and b is same. Last bit is to check whether it one of them alphanumeric, it one of them is not increment it by 1 otherwise remain same
+
+
+
+
+
+	     
 class Solution:
 	def isPalindrome(self, s: str) -> bool:
 		i, j = 0, len(s) - 1
 		while i < j:
 			a, b = s[i].lower(), s[j].lower()
 			if a.isalnum() and b.isalnum():
-				if a != b: return False
+				if a != b: 
+				return False
 				else:
 					i, j = i + 1, j - 1
 					continue
