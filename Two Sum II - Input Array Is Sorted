@@ -9,6 +9,11 @@ Your solution must use only constant extra space.
 
 
 
+inituition -  for this problem we cannot use nested loop otherwise it will show TLE so we will use binary search. 
+
+
+
+
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         high=len(numbers)-1
