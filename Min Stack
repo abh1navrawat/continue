@@ -13,6 +13,11 @@ You must implement a solution with O(1) time complexity for each function.
 
 
 
+intuition -  we have to define multiple functions thats do multiple tasks. first implement constructor which initialize 2 arrays (stack, minstack).
+             likewise create other functions.
+
+
+
 
 class MinStack:
 
