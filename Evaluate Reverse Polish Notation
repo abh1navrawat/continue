@@ -13,6 +13,12 @@ The answer and all the intermediate calculations can be represented in a 32-bit 
 
 
 
+
+
+intuition -  create a array where our final result will be stored. In res array add those token elements which are not operators(+,-,*,/).
+             if operator come perform the operation on the last two elements of res and delete those elements. At last the res will only contain a single element.
+             return the only element thst is in zeroth index.
+
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         res=[]
