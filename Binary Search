@@ -5,6 +5,9 @@ You must write an algorithm with O(log n) runtime complexity.
 
 
 
+intuition -  this work on the concept of divide and conquer. Create 2 variable assign index of  the first element and last element respectively.
+             inside a loop create another variable that represent the middle element of the array. now check whether the required no is greater than of middle
+             no. if so change low to middle+1 (rest of the array is useless) otherwise change the high to middle-1. it will iterate until required no. is not found.
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         high= len(nums)-1
