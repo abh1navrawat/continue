@@ -15,6 +15,14 @@ Return the number of car fleets that will arrive at the destination.
 
 
 
+intuition - line number 29 explanation , i will represent position and j will tell the time required to reach target. Iterate i in the range of length position.
+            it should be sorted in descending order. Now we will keep checking whether j is greater than result time ifso j will become result time and
+            res should be incremented by one.(i and j will be printed together so i will be in descending order not j)
+
+
+
+
+
 
 class Solution:
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
