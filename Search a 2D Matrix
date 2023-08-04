@@ -9,6 +9,10 @@ You must write a solution in O(log(m * n)) time complexity.
 
 
 
+intuition -  check whethter the matrix is empty. Matrix array is same as a nested array. 
+             Suppose there is a matrix, total no. of rows will be equal to length of matrix array. The total no. of column will be equal to 
+             total no. of elements of the inner array. The matrix is sorted in ascending order so apply binary search in this.
+
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         if len(matrix) == 0:
