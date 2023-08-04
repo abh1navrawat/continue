@@ -9,6 +9,9 @@ Return the minimum integer k such that she can eat all the bananas within h hour
 
 
 
+intuition -  Add all the elements and divide them by total no. of hours , make it the left limit for the binary search. for the right limit pick the biggest
+             element of the array. Mathematically, the result will lie between this range Now apply the binary search.
+
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         left = ceil(sum(piles) / h) 
