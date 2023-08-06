@@ -1,0 +1,19 @@
+You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer.
+The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+Increment the large integer by one and return the resulting array of digits.
+
+
+
+
+intuition -  at first we are storing it as a strings. In the second line, we have to convert them all in the form of integer and group them together.
+             (example - ['1','2','9'] will become 129) then add one to the integer. Convert it in the form of integer array and return it.
+
+
+
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        a=[str(i) for i in digits]
+        a=''.join(a)
+        a=str(int(a)+1)
+        return [int(i) for i in a]
