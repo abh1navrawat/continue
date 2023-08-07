@@ -11,6 +11,12 @@ You must write an algorithm that runs in O(log n) time.
 
 
 
+intuition -  in the question it is given the array is sorted it means that the first or leftmost element is smallest
+             so the left limit is 0 and the right limit is length of the array. Use the binary search and when the while condition break
+             return the left limit(smallest element).
+
+
+
 
 class Solution:
     def findMin(self, nums: List[int]) -> int:
