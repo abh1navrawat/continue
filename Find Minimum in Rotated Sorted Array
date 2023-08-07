@@ -10,7 +10,7 @@ You must write an algorithm that runs in O(log n) time.
 
 
 **IMP NOTE**
-this way is not correct,this just show flaw in the question,yes it will accept the answer...
+this way is not correct, because it uses bigO(n) time complexity , yes it will accept the answer...
 
 
 
