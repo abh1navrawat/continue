@@ -1,0 +1,37 @@
+You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.
+
+Return the length of the longest substring containing the same letter you can get after performing the above operations.
+
+
+
+error - passing 23/39 testcases. Fault is that it doesn't check the already checked elements.
+
+
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        l = list(s)
+        x=[]
+        for i in range(len(l)-1):
+            temp,res = k,1
+            for j in range(i+1,len(l)):
+                if l[i]==l[j]:
+                    res+=1
+                elif temp>0:
+                    if l[i]==l[j]:
+                        res+=1
+                    else:
+                        temp-=1
+                        res+=1
+                else:
+                    x.append(res)
+                    break
+                if j == len(l)-1:
+                    x.append(res)
+                    break
+                # print(temp,res)
+            # print(x)
+
+
+
+        return max(x)
