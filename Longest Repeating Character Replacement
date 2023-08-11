@@ -1,4 +1,5 @@
-You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.
+You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. 
+You can perform this operation at most k times.
 
 Return the length of the longest substring containing the same letter you can get after performing the above operations.
 
@@ -29,9 +30,31 @@ class Solution:
                 if j == len(l)-1:
                     x.append(res)
                     break
-                # print(temp,res)
-            # print(x)
-
-
-
         return max(x)
+
+
+
+
+
+
+intuition -  we will use enumerate ,then the next line do the same thing of adding that key and value to the dictionary,
+             otherwise creating key and value for it.
+
+
+
+
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        d = {}
+        window = 0
+        
+        for i, char in enumerate(s):
+            d[char] = d.get(char, 0) + 1
+            if window+1 - max(d.values()) <= k:
+                window += 1
+            else:
+                d[s[i-window]] -= 1
+        
+        return window
+        
