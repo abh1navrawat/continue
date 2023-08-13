@@ -5,18 +5,24 @@ In other words, return true if one of s1's permutations is the substring of s2.
  
 
 
+intuition -  we will create 2 variable, one will store length of the s1 string and other will store the key value pair of s1.
+             to generate key value pair we will not use dictionary, rather a module called collection module. It doesnt need to be imported.
+             One of its function is python Counter that can create key value pair as dictionary. 
+             i can iterate in len in s2 but to make the code faster we will make i iterate over shorter no. of elements.
+             now we will create c2 variable that will contain elements of s2 in dictionary format. Each c2 will contain c1 number of element.
+             Then we will check whether even once the c1 is equal to c2,if so return true, otherwise False.
+
+
+
 
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        cntr, w = Counter(s1), len(s1)   
-
-        for i in range(len(s2)):
-            if s2[i] in cntr: 
-                cntr[s2[i]] -= 1
-            if i >= w and s2[i-w] in cntr: 
-                cntr[s2[i-w]] += 1
-
-            if all([cntr[i] == 0 for i in cntr]):
+        len1 = len(s1)
+        c1 = Counter(s1)
+        
+        for i in range(len(s2)-len1+1):
+            c2 = Counter(s2[i:i+len1])
+            if c2 == c1:
                 return True
-
+            
         return False
