@@ -15,18 +15,20 @@ If there are multiple such values, it returns the value associated with the larg
 
 
 
+intuition -  for this quesetion we have to create 2 dictionary. One will keep values and the other will keep timestamps.
+             In the set portion we will append the timestamp and values to their respective variables.
+             For get portion we have to search in the timestamp dictionary that where should the given timestamp will come, we will store that in idx(index).
+             for searching where should the timestamp would come we will use bisect module( it basically tell where a element should be placed in a sorted list)
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        prev= None
-        while head:
-            next_node = head.next
-            head.next=prev
-            prev=head
-            head=next_node
-        return prev
+
+
+
+class TimeMap:
+
+    def __init__(self):
+        self.ts = collections.defaultdict(list)
+        self.val= collections.defaultdict(list)
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        self.ts[key].append(timestamp)
+        self.val[key].append(value)
