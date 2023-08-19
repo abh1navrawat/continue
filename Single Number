@@ -1,0 +1,24 @@
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+
+
+
+
+intuition -  Create a dictionary. Insert the elements of the list in the dictionary, if that element come more than once pop that element.
+             then only one element will remain in the dictionary. Return that element. 
+
+
+
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        dict1={}
+        for i in nums:
+            if i  not in dict1:
+                dict1[i]=1
+            else:
+                dict1.pop(i)
+        for i in dict1.keys():
+            return i
