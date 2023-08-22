@@ -1,0 +1,23 @@
+A perfect number is a positive integer that is equal to the sum of its positive divisors, excluding the number itself. A divisor of an integer x is an integer that can divide x evenly.
+
+Given an integer n, return true if n is a perfect number, otherwise return false.
+
+ 
+
+works on 59/98 testcases      error TLE
+
+
+intuition -  We will make a variable named res and add a the divisors of num. and we will create a variable named s in which we will store how many divisors are of 
+             num. If s is gerater than zero and res is equal to nums yhan return True otherwise False.
+class Solution:
+    def checkPerfectNumber(self, num: int) -> bool:
+        s=0
+        res=0
+        for i in range(1,num):
+            if num % i ==0:
+                res=res+i
+                s+=1
+        if s>0 and res==num:
+            return True
+        else:
+            return False
