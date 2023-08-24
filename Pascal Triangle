@@ -1,0 +1,26 @@
+Given an integer numRows, return the first numRows of Pascal's triangle.
+
+In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+
+
+
+
+intuition -  In every pascal triangle first layer is of 1. We have already created a layer of we will iterate it on numRows - 1. Create a array(row) in which 1 is theonly element. 
+             Now insert elements in row. Atlast of every row add 1 as an element because in pascal triangle every row ending has 1 in it. Append row to res and return res.
+
+
+
+
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        res=[]
+        res.append([1])
+        for i in range(numRows-1):
+            row=[1]
+            for j in range(i):
+                row.append(res[i][j]+res[i][j+1])
+            print(row)
+            row.append(1)
+            res.append(row)
+        return res
