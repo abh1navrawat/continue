@@ -1,0 +1,23 @@
+Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+
+
+
+
+
+intuition -  we will iterate until k is equal to zero. For this question we cannot use append because it only add element in the last place so we will use insert  syntax - list.insert(position, element)
+             then we will remove the last element and decrease the value of k by 1.
+
+
+
+
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        while k>0:
+            nums.insert(0,nums[-1])
+            nums.pop()
+            k-=1
+        return nums
