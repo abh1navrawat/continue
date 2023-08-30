@@ -1,0 +1,36 @@
+You are given a 0-indexed integer array nums and an integer k.
+
+A subarray is called equal if all of its elements are equal. Note that the empty subarray is an equal subarray.
+
+Return the length of the longest possible equal subarray after deleting at most k elements from nums.
+
+A subarray is a contiguous, possibly empty sequence of elements within an array.
+
+
+
+
+intuition - we will use sliding window for this question, we will create a dictionary and add values of nums in it. maxCnt will store the highest value of the dictionary.
+            we will check whether (maxCnt + k < right-left+1) we will increase the value of left by 1 and if maxCnt + k >= right-left+1 then check which is bigger maxCnt or res store that in res.
+            Atlast return res.
+
+
+
+
+class Solution:
+    def longestEqualSubarray(self, nums: List[int], k: int) -> int:
+        left = 0
+        res = 0
+        hm = defaultdict(int)
+        maxCnt = 0
+
+        for right in range(len(nums)):
+            hm[nums[right]] += 1
+            maxCnt = max(maxCnt, hm[nums[right]])
+
+            if maxCnt + k < right-left+1:
+                hm[nums[left]] -= 1
+                left += 1
+
+            if maxCnt + k >= right-left+1:
+                res = max(res, maxCnt)
+        return res
