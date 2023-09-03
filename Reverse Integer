@@ -1,0 +1,20 @@
+Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+
+Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+
+
+
+
+
+intuition - First change the number into string then reverse it and then convert it back to integer(you need to take the absolute of x otherwise it will put negative sign in the end).
+            return -res if x lesser than 0 otherwise res. ALso check whether its bit_length greater than 32. (bit_length - Returns the number of bits required to represent an integer in binary,
+            excluding the sign and leading zeros.)
+
+
+
+
+
+class Solution:
+      def reverse(self, x: int) -> int:
+        rev = int(str(abs(x))[::-1])
+        return (-rev if x < 0 else rev) if rev.bit_length() < 32 else 0
