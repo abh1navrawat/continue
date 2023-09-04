@@ -1,0 +1,21 @@
+Given an array Arr[] of N integers. Find the contiguous sub-array(containing at least one number) which has the maximum sum and return its sum.
+
+
+
+
+intuition - Cannot use nested loops it will show TLE, so create two variable one with smallest value oher zero. Kadane’s Algorithm is an iterative dynamic programming algorithm.
+            It calculates the maximum sum subarray ending at a particular position by using the maximum sum subarray ending at the previous position.
+
+
+
+
+
+        p=float('-inf')
+        q=0
+        for i in range(0,N):
+            q=q+arr[i]
+            if q>p:
+                p=q
+            if q<0:
+                q=0
+        return p
