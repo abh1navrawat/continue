@@ -1,0 +1,19 @@
+Given an integer num, repeatedly add all its digits until the result has only one digit, and return it.
+
+
+
+
+intuition - just check whether nums is greater than 9, if so divide num by 10 and take its remainder and add to sum variable. and repeat the process until num is lesser than 9.
+
+class Solution:
+  def addDigits(self, num: int) -> int:
+		while num > 9:
+			sum = 0
+			while num:
+				sum += num%10
+				num = num//10
+			
+			num = sum
+
+		return num
+        
