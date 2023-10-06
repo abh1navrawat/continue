@@ -1,0 +1,23 @@
+Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.
+
+Note: You must not use any built-in BigInteger library or convert the inputs to integer directly.
+
+
+
+
+intuition - to solve this problem expand the multiplication of the 2 numbers.example = 14*16 = (10+4)*(10+6) like this continue expanding it until the number which needs to be added in single digits.
+            in the below code if digit in ones place then integers will multiply with themselves, but on tens place it will be multiplied with 10. and it will continously multiply with 10 in later places.
+
+
+
+
+class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        res=0
+        for i in num1:
+            res*=10
+            p=0
+            for j in num2:
+                p=p*10+int(i)*int(j)
+            res+=p
+        return str(res)
