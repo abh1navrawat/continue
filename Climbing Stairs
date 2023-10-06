@@ -6,7 +6,9 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 
 
 intuition - using tabulation method (bottoms up approach) to solve this problem. We are using fibonacci method in this. We will create a dp array which will store n+1 number of elements.
-            First 2 elements will be 1 then the next elements will be the sum of the last 2 elements of dp array. At last print the nth element of dp because that will be the total no. of ways.
+            First 2 elements will be 1 then the next elements will be the sum of the last 2 elements of dp array. At last return the nth element of dp because that will be the total no. of ways.
+
+
 
 class Solution:
     def climbStairs(self, n: int) -> int:
