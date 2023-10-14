@@ -1,0 +1,25 @@
+Given an integer array nums and an integer k, return the kth largest element in the array.
+
+Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
+Can you solve it without sorting?
+
+
+
+intuition - create a array, add nums[i] until k times by using heappush. After k times remove elements by using heappop (removes smallest element) and then heappush element in the same loop. At last return 
+            the first element of the array.
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        if not nums or not k or k < 0:
+            return None
+
+        minheap = []
+        for num in nums:
+            if len(minheap) < k:
+                heapq.heappush(minheap, num)
+            else:
+                if num > minheap[0]:
+                    heapq.heappop(minheap)
+                    heapq.heappush(minheap, num)
+        return minheap[0]
