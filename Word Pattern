@@ -1,0 +1,29 @@
+Given a pattern and a string s, find if s follows the same pattern.
+
+Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s.
+
+
+
+
+
+intuition - use split keyword on s to make an array of differt words that are separated by whitespace. If the len of both given str(now converted to array) is not equal, return false. 
+            Also convert in set and then check it will remove duplicate elements. Now start inserting key value pair in dict. Dictionary will take s element as key and pattern as value.
+
+
+
+
+
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        x=s.split(' ')
+        y=dict()
+        if len(x) != len(pattern):
+            return False
+         if len(set(x)) != len(set(pattern)):
+            return False
+        for i in range(len(x)):
+            if x[i] not in y:
+                y[x[i]]=pattern[i]
+            elif y[x[i]]!=pattern[i]:
+                return False
+        return True
