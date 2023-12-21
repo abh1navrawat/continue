@@ -4,9 +4,16 @@ Notice that the solution set must not contain duplicate triplets.
 
 
 
+
+
 intuition - we are separating positive,negative and zeroes.CHange the array n and p into set N and P. If there are 3 zeroes then we are appending it to result set.
             now check that for every element of P, there is no inverse present,if there is then create a subset of those number with a zero and add them to result.
             now use nested loop in n and check whether the sum of 2 elements is present in p,do it for the p now. Return result
+
+
+
+
+
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]: 
         res = set()
