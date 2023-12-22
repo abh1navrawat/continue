@@ -1,0 +1,30 @@
+Given two binary strings a and b, return their sum as a binary string.
+
+
+
+
+intuition - if i and j greater than or equal to zero and carry if carry is greater than 0, while loop continues.if i or j greater than or equal to zero we will add it to the value of carry and decrease the value
+            of i or j respectively. after every if statement we will append remainder of carry if divided by 2 to a array. We will also perform floor division on carry.Atlast we will return the reversed
+            array but it will become string after using hte join keyword.
+
+
+
+
+class Solution:
+  def addBinary(self, a: str, b: str) -> str:
+    s = []
+    carry = 0
+    i = len(a) - 1
+    j = len(b) - 1
+
+    while i >= 0 or j >= 0 or carry:
+      if i >= 0:
+        carry += int(a[i])
+        i -= 1
+      if j >= 0:
+        carry += int(b[j])
+        j -= 1
+      s.append(str(carry % 2))
+      carry //= 2
+
+    return ''.join(reversed(s))
