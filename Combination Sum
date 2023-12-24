@@ -1,0 +1,33 @@
+Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target. 
+You may return the combinations in any order.
+
+The same number may be chosen from candidates an unlimited number of times. Two combinations are unique if the 
+frequency
+ of at least one of the chosen numbers is different.
+
+The test cases are generated such that the number of unique combinations that sum up to target is less than 150 combinations for the given input.
+
+
+
+
+
+intuition - this problem requires backtracking. We will define a function named bt(backtrack) that will take 3 variables. x represent current combination, y is current combination sum and z is current index.
+            At starting x,y,z will be null or zero. If y is greater than target then it will never be equal.so return empty. If y is equal to target then append it to array. Now use a loop to start inserting value
+            in x,y,z. Atlast return the array
+
+
+
+
+class Solution: 
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        s=[]
+        n=len(candidates)
+        def bt(x,y,z):
+            if y>target:
+                return 
+            if y==target:
+                s.append(x);return
+            for i in range(z,n):
+                bt(x+[candidates[i]],y+candidates[i],i)
+        bt([],0,0)
+        return s                
