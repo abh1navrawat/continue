@@ -1,0 +1,25 @@
+You are given an array of unique integers salary where salary[i] is the salary of the ith employee.
+
+Return the average salary of employees excluding the minimum and maximum salary. Answers within 10-5 of the actual answer will be accepted.
+
+
+
+
+
+intuition - sort the array,remove 1st and last element. FInd the sum of the remaing element and divide it by the length of the array.
+
+
+
+
+
+class Solution:
+    def average(self, salary: List[int]) -> float:
+        salary.sort()
+        salary.pop()
+        salary.pop(0)
+        s=0
+        for i in salary:
+            s+=i
+        print (len(salary))
+        return s/len(salary)
+        
