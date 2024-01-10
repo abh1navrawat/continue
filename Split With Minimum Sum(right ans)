@@ -1,0 +1,37 @@
+Given a positive integer num, split it into two non-negative integers num1 and num2 such that:
+
+The concatenation of num1 and num2 is a permutation of num.
+In other words, the sum of the number of occurrences of each digit in num1 and num2 is equal to the number of occurrences of that digit in num.
+num1 and num2 can contain leading zeros.
+Return the minimum possible sum of num1 and num2.
+
+Notes:
+
+It is guaranteed that num does not contain any leading zeros.
+The order of occurrence of the digits in num1 and num2 may differ from the order of occurrence of num.
+
+
+
+
+
+intuition - We cannot iterate in a integer. SO make it a string, sort it. To get the minimal sum we can choose the alternative numbers, they will give the minimal sum because they are sorted.So make 2 empty 
+            strings(a, b). if its even store it in a, if its odd store it in b. return the sum of a and b in iteger form(if we '+' the string it will concatenate). 
+
+
+Faster than 99%
+
+
+
+
+
+class Solution:
+    def splitNum(self, num: int) -> int:
+        p=sorted(str(num))
+        a,b='',''
+        for i in range(len(p)):
+            if i%2==0:
+                a+=p[i]
+            else:
+                b+=p[i]
+        sum=int(a)+int(b)
+        return sum
