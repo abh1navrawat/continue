@@ -1,0 +1,28 @@
+Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+
+
+
+
+
+intuition - Backtracking needed for this problem, Create 2 arrays (result and visited). we need to create and call a function which will have 4 arguments. In the backktaracking recursive function, first we will 
+            check whether the length of subset and nums is equal, if yes sthen appen subset to res. We will do iteration over the length of nums, check if i is in visited array, if not add i to vis (so it won't
+            repeat) Call the backtracking function again but this time with subset + the current number we are iterating (each iteration have an increasing amount of lenngth when len of subset and nums matches
+            it will be added to res) then remove that number from vis (to make new permutations). 
+
+
+
+
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res,vis=[],set()
+        self.bt(res,vis,[],nums)
+        return res
+    def bt(self,res,vis,subset,nums):
+        if len(subset)==len(nums):
+            res.append(subset)
+        for i in range(len(nums)):
+            if i not in vis:
+                vis.add(i)
+                self.bt(res,vis,subset+[nums[i]],nums)
+                vis.remove(i)
