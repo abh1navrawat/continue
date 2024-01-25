@@ -1,0 +1,31 @@
+Given an array of distinct integers arr, find all pairs of elements with the minimum absolute difference of any two elements.
+
+Return a list of pairs in ascending order(with respect to pairs), each pair [a, b] follows
+
+a, b are from arr
+a < b
+b - a equals to the minimum absolute difference of any two elements in arr
+
+
+
+
+
+intuition - Sort the array, the difference between 1st and 2nd array will give first minimum difference, now iterate over the range (2,len(arr)) (beacause we have already took first 2 elements of arr).
+            If the difference between 3rd and 2nd element is equal to minimum difference append it to the result array, if difference between those elements is less than the previous difference, make those 2
+            elements the res array(it will remove all other elements),update the differnece too. Keeping doing this until the end of the range and retrn res.
+
+
+
+
+class Solution:
+    def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
+        arr.sort()
+        res = [[arr[0], arr[1]]]
+        dif = arr[1]-arr[0]
+        for i in range(2, len(arr)):
+            if arr[i] - arr[i-1]==dif:
+                res.append([arr[i-1], arr[i]])
+            elif arr[i] - arr[i-1]<dif: 
+                res = [[arr[i-1], arr[i]]]
+                dif = arr[i] - arr[i-1]
+        return res
