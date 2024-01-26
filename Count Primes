@@ -1,0 +1,30 @@
+Given an integer n, return the number of prime numbers that are strictly less than n.
+
+
+
+
+
+
+intuition - Done by using sieve of eratosthenes(iteratively mark all non-prime numbers(multiple of prime numbers).A list containing n numbers whose value is 1. Make first and second element 0(beacuse 0 and 1
+            are not prime no).We will start from 2(first prime no). In this solution all the non- prime numbers are marked by 0 in lst. So if m is 1 in lst, we mark all its multiple 0. (1 + (n - m * m - 1) // m)
+            is the arthmetic progression formula to find n. We make all the elements that are multiple of m between ( m*m and n ) 0. If m==2 we will increment it by 1 otherwise by 2(it will help in skipping 
+            even numbers(2 is the only even prime number)).
+
+
+
+
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        if n < 3:
+            return 0
+        lst = [1] * n
+        lst[0] = lst[1] = 0
+        m = 2
+        while m * m < n:
+            if lst[m] == 1:
+                lst[m * m: n: m] = [0] *(1 + (n - m * m - 1) // m)
+            if m == 2:
+                m+=1
+            else:
+                m+=2
+        return sum(lst)
