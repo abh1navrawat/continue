@@ -3,7 +3,8 @@ Given an integer n, return the number of prime numbers that are strictly less th
 
 
 
-intuition - memory limit exceeded, we can make a list of prime numbers. Its better than to check each number one by one.
+intuition - memory limit exceeded, we can make a list of prime numbers. Its better than to check each number one by one. We are starting from 3(2nd prime number). We cannot start from 2(fisrt prime number)
+            because if the list is empty it cannot divide with anything.
 
 
 
