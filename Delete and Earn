@@ -1,0 +1,24 @@
+You are given an integer array nums. You want to maximize the number of points you get by performing the following operation any number of times:
+
+Pick any nums[i] and delete it to earn nums[i] points. Afterwards, you must delete every element equal to nums[i] - 1 and every element equal to nums[i] + 1.
+Return the maximum number of points you can earn by applying the above operation some number of times.
+
+
+
+
+intuition - Simplifying it to house robber problem. We have to get the maximum points. SO make a variable and storeall the copies of distinct integers in input array, then f[i] will store all the copies of 
+            corresponding no. in input array. then it will automatically become house robber problem.
+
+
+
+
+
+class Solution:
+    def deleteAndEarn(self, nums: List[int]) -> int:
+        f=[0]*(max(nums)+1)
+        for n in nums:
+            f[n]+=n
+        c,p=0,0
+        for i in f:
+            c,p=max(p+i,c),c
+        return c
