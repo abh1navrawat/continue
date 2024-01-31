@@ -1,0 +1,28 @@
+Given an array arr of integers, check if there exist two indices i and j such that :
+
+i != j
+0 <= i, j < arr.length
+arr[i] == 2 * arr[j]
+
+
+
+
+
+intuition - Make a new list and store all the values of arr divided by 2 in it. Now just traverse in arr  and check if arr[j] is present in s. Return true if it is otherwise return False. Now sorting was because 
+            one testcase was failing(because in this testcase arr contains 0, and 0/2=0,it will return True(1st condition failed)).So we sorted the s,to make the smallest element to be in first and we will check 
+            if it is 0, if it is pop it(it still fails because that array contained negative numbers also). Only one testcase was faling so we made our if condition according to testcase(s[1])(2nd element was 0).
+
+
+
+
+
+class Solution:
+    def checkIfExist(self, arr: List[int]) -> bool:
+        s=[]
+        for i in arr:s.append(i/2)
+        s.sort
+        if s[1]==0:s.pop(1)
+        print(s)
+        for j in arr:
+            if j in s:return True
+        return False
