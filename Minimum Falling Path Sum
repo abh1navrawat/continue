@@ -1,0 +1,23 @@
+Given an n x n array of integers matrix, return the minimum sum of any falling path through matrix.
+
+A falling path starts at any element in the first row and chooses the element in the next row that is either directly below or diagonally left/right.
+Specifically, the next element from position (row, col) will be (row + 1, col - 1), (row + 1, col), or (row + 1, col + 1).
+
+ 
+
+
+intuition - This question is very similar to Triangle(leetcode problem - 120). Its n x n matrix that means the no. of rows will be equal to no. of coloumns. Find the minimum of 3 cells below the current block by 
+            using min function. (0<=j-1) and (j+1<l) give give True or False result(0 or 1) according to the positioning of the current block. Atlast return the smallest element among the last row of matrix.
+
+
+
+
+
+class Solution:
+    def minFallingPathSum(self, mat: List[List[int]]) -> int:
+        l=len(mat)
+        for i in range(1,l):
+            for j in range(l):
+                mat[i][j]+=min(mat[i-1][j-(0<=j-1)],mat[i-1][j],mat[i-1][j+(j+1<l)])
+            print(mat)
+        return min(mat[l-1])
