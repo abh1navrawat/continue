@@ -1,0 +1,26 @@
+Given an m x n binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
+
+ 
+
+
+
+intuition - To find the largest square, out of 8 numbers surrounding a cell, 3 cell(forming a L shape) should have '1's in them. So we will check if all three number([i][j],[i+1][j],[i][j+1])have '1' in them. if so
+            we change the value of [i+1][j+1] by adding 1 in it. But in first row we cannot find upper elements and first column of the matrix we cannot find previous elements. So we will create another matrix,
+            that would have a extra row and column.It will be filled with 0s. The new matrix have a extra row and a extra column, that means matrix[i][j] will have teh value of dp[i+1][j+1].Create a variable that
+            store the max area, return its square.
+
+
+
+
+
+class Solution:
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        r,c=len(matrix),len(matrix[0])
+        dp=[[0]*(c+1) for _ in range(r+1)]
+        area=0
+        for i in range(r):
+            for j in range(c):
+                if matrix[i][j]=='1':
+                    dp[i+1][j+1]=min(dp[i][j],dp[i+1][j],dp[i][j+1])+1
+                    area=max(area,dp[i+1][j+1])
+        return area*area
