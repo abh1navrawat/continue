@@ -1,0 +1,20 @@
+An ugly number is a positive integer whose prime factors are limited to 2, 3, and 5.
+
+Given an integer n, return true if n is an ugly number.
+
+
+
+
+intuition - Out if 2,3,5 Five is the biggest no. SO start by chceking if divided by 5 it gives remainder 0,if so divide it by 5 repeat the process until it is not a multiple of 5.Then 3 and 2.
+            Atfer continously dividing it by those number if 1 remains then it is a Ugly no. otherwise it is not a ugly number
+
+
+
+
+class Solution:
+    def isUgly(self, num: int) -> bool:
+        if num == 0: return False
+        while num % 5 == 0: num /= 5
+        while num % 3 == 0: num /= 3
+        while num % 2 == 0: num /= 2
+        return num == 1
