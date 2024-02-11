@@ -1,0 +1,26 @@
+Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+Note that the same word in the dictionary may be reused multiple times in the segmentation.
+
+
+
+
+
+intuition - We need to go over the combinations of substrings of s and check if they are available in the dictionary. dp will be used to determine if we have successfully created a string ending at dp[index].
+            It means dp[i] will show whether s[0:i] is present in wordDict. In if condition, dp[j] helps us ensure that we're only marking dp True when words are adjacent. We will keep updating our dp
+            if the last element is of dp is True then the whole s can be made form wordDict.
+
+
+
+
+
+ class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        dp=[False]*(len(s)+1)
+        dp[0]=True
+        for i in range(1,len(s)+1):
+            for j in range(i):
+                if dp[j] and s[j:i] in wordDict:
+                    dp[i]=True
+                    break
+        return dp[-1]
