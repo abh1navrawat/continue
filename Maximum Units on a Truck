@@ -1,0 +1,33 @@
+You are assigned to put some amount of boxes onto one truck. You are given a 2D array boxTypes, where boxTypes[i] = [numberOfBoxesi, numberOfUnitsPerBoxi]:
+
+numberOfBoxesi is the number of boxes of type i.
+numberOfUnitsPerBoxi is the number of units in each box of the type i.
+You are also given an integer truckSize, which is the maximum number of boxes that can be put on the truck. You can choose any boxes to put on the truck as long as the number of boxes does not exceed truckSize.
+
+Return the maximum total number of units that can be put on the truck.
+
+
+
+
+
+
+intuition - We will sort the boxTypes in accordance to which have the no. most units per box(that will help in storing maximum units in truck). i = no. of boxes, j = no. of unit per boxees.
+            if we dont put a if condition inside for loop truckSize may end up in negative during the last iteration(that will give some extra units in truck so ultimately lead to wrong answer).
+
+
+
+
+
+
+class Solution:
+    def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:
+        res=0
+        s=sorted(boxTypes, key = lambda x : x[1], reverse = True)
+        for i,j in s:
+            if truckSize>i:
+                res+=(i*j)
+                truckSize-=i
+            else:
+                res+=(truckSize*j)
+                break
+        return res
