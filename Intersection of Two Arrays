@@ -1,0 +1,20 @@
+Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must be unique and you may return the result in any order.
+
+
+
+
+
+intuition - Iterate through nums1 and check if that element is present in nums2 also. If yes, then add it to user defined set.
+
+
+
+
+
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        res=[]
+        for i in nums1:
+            if i in nums2:
+                res.append(i)
+        res=set(res)
+        return res
