@@ -1,0 +1,20 @@
+Given a string date representing a Gregorian calendar date formatted as YYYY-MM-DD, return the day number of the year.
+
+
+
+
+
+
+intuition - One of the smartest solution found. The map() function executes a specified function for each item in an iterable. This solution uses datetime module (helps in manipulating date and time). There are 
+            five major classes in datetime module but we are only going to use 'datetime.date' (no need of time). We are going to use timedelta object(used to find the difference between two date or datetime).
+            We are going to subtract 1st day of the year (month and day should between [1,12]) with the date we want to find. And add 1 because we subtracted from 1st of January not 0.
+
+
+
+
+
+
+class Solution:
+    def dayOfYear(self, date: str) -> int:
+        Y, M, D = map(int, date.split('-'))
+        return int((datetime.date(Y, M, D) - datetime.date(Y, 1, 1)).days + 1)
