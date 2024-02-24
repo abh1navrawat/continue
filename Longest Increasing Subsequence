@@ -1,0 +1,23 @@
+Given an integer array nums, return the length of the longest strictly increasing subsequence.
+
+
+
+
+
+intuition - This time we are not making a list that contains only zeroes, it will contain 1s (because even if we cannot find any increasing subsequence it will still take the first element and the length of the 
+            array will be 1). Now in nested loops (1st iteration of i in len(nums) and 2nd of j in i) we will check whether the pervious elements are bigger than the current element. If so change the ith ele
+            of dp with the max(dp[i], dp[j] + 1).
+
+
+
+
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        n = len(nums)
+        dp = [1] * n
+        for i in range(1, n):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+        return max(dp)
