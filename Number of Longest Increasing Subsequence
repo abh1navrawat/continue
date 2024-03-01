@@ -1,0 +1,35 @@
+Given an integer array nums, return the number of longest increasing subsequences.
+
+Notice that the sequence has to be strictly increasing.
+
+
+
+
+
+
+intuition - initialize two arrays to store the length of the longest increasing subsequence and the number of such subsequences ending at each index. Iterate over the input index then iterate over all the indices
+            before i then check if the current element at i is greater than the element at j. If dp[i] < dp[j] + 1 meaning we found a longer sequence and dp[i] need to be updated, then cnt[i] need to be updated
+            to cnt[j]. If dp[i] == dp[j] + 1 meaning dp[j] + 1 is one way to reach longest increasing sequence to i, so simple increment by cnt[j] like this cnt[i] = cnt[i] + cnt[j].
+            Finally, sum up cnt of all longest increase sequence will be the solution.
+
+
+
+
+
+
+class Solution:
+    def findNumberOfLIS(self, nums: List[int]) -> int:
+        n = len(nums)
+        m=0
+        dp,cnt = [1] * n , [1] * n
+
+        for i in range(n):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    if dp[i]<dp[j]+1:
+                        dp[i] , cnt[i] = dp[j]+1 , cnt[j]
+                    elif dp[i]==dp[j]+1:
+                        cnt[i] += cnt[j]
+        m= max(dp)
+
+        return sum(c for l, c in zip(dp, cnt) if l == m)
