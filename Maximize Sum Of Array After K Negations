@@ -1,0 +1,29 @@
+Given an integer array nums and an integer k, modify the array in the following way:
+
+choose an index i and replace nums[i] with -nums[i].
+You should apply this process exactly k times. You may choose the same index i multiple times.
+
+Return the largest possible sum of the array after modifying it in this way.
+
+
+
+
+
+intuition - Can be easily done by sorting twice. First sort to change all the negative elements to positive elements. Second sort If k is still greater than zero. We will keep applying the converting process on the
+            smallest element.
+
+
+
+
+
+class Solution:
+    def largestSumAfterKNegations(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        for i in range(len(nums)):
+            if nums[i] < 0 and k > 0:
+                nums[i] = -nums[i]
+                k -= 1
+        nums.sort()
+        if k%2==1: 
+            nums[0] = -nums[0]
+        return sum(nums)
