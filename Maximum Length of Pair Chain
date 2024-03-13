@@ -1,0 +1,30 @@
+You are given an array of n pairs pairs where pairs[i] = [lefti, righti] and lefti < righti.
+
+A pair p2 = [c, d] follows a pair p1 = [a, b] if b < c. A chain of pairs can be formed in this fashion.
+
+Return the length longest chain which can be formed.
+
+You do not need to use up all the given intervals. You can select pairs in any order.
+
+ 
+
+
+
+intuition - Solved by using greedy. Sort the pairs based on second element in ascending order. Cur will keep the track of last element in the chain, ans will store the largest chain. Loop through pairs if 
+            the first element of the current pair is greater than cur, it means we can extend the current chain. Increase ans by 1.
+
+
+
+
+
+class Solution:
+    def findLongestChain(self, pairs: List[List[int]]) -> int:
+        pairs.sort(key=lambda x: x[1])
+        cur, ans = float('-inf'), 0
+        
+        for pair in pairs:
+            if cur < pair[0]:
+                cur = pair[1]
+                ans += 1
+                
+        return ans
