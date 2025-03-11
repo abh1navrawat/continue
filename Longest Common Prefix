@@ -1,0 +1,20 @@
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+
+
+
+intuition - if we sort a string it sorts according to ASCII values. So it will sort the whole array in a order in which first and last have the maximum difference. 
+            Now we ca njust compare 2 elements of strs instead of whole array......................       btw its runtime complexity beats 100%
+
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        s=sorted(strs)
+        z,i='',0
+        for i in range(min(len(s[0]),len(s[-1]))):
+            if s[0][i]!=s[-1][i]:
+                return z
+            z+=s[0][i]
+        return z
