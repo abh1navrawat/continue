@@ -22,3 +22,32 @@ class Solution:
         for i in f:
             c,p=max(p+i,c),c
         return c
+
+
+
+
+
+
+solution 2 :
+
+
+intuition - Creating an array that will contain overall sun of all the numbers.  (nums=[2,2,2,4,6,6]    arr=[6,4,12])
+            arr will also contain zero in places where missing nums.             (in above example 0,1,3,5 is missing in their place zeroes will be added in arr)
+            Then just check which is bigger previous ele of dp or sum of 2nd last and curr arr ele.
+            place that in dp and return the last(biggest) ele of dp.
+
+
+
+
+
+
+class Solution:
+    def deleteAndEarn(self, nums: List[int]) -> int:
+        nums.sort()
+        arr=[0]*(nums[-1]+1)
+        for i in nums:
+            arr[i]+=i
+        dp=arr
+        for i in range(2,len(arr)):
+            dp[i]= max(arr[i]+dp[i-2],dp[i-1])
+        return dp[-1]
