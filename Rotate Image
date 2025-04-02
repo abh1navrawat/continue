@@ -41,4 +41,5 @@ rub a loop first interchange the first element with 1st row last ele,         [l
 
 
 Add a coloumn at first full of zeroes( will help in easy interchange of elements. Nested arrays have a different insert syntax 
-
+arrayname[listposition].insert(index,elements)
+list5[0].insert(0, (2,5,6,8))
