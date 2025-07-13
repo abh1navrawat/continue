@@ -1,0 +1,53 @@
+You are given an integer num. Rearrange the digits of num such that its value is minimized and it does not contain any leading zeros.
+
+Return the rearranged number with minimal value.
+
+Note that the sign of the number does not change after rearranging the digits.
+
+
+
+
+intuition - Remove the negative sign because '-' symbol does not come under int. Break the number to single digits and make a list,  sort the list 2 times(ascending for postive no.
+            and descending for negative no. ) for the positive list remove the zeroes from the first place then place them after a non-zero digit.
+            Check if the original no. as negative or positive, Choose the list accordingly, then convert it to a single string then return the it in int format
+
+
+(beats -100% runtime, 0ms)
+
+
+
+class Solution:
+    def smallestNumber(self, num: int) -> int:
+        n=num
+        p=[]
+        z=0
+        if num==0:
+            return 0
+        if num<0 and num>-10:
+            return num
+        if num<0:
+            num=-1*num
+        while num!=0:
+            p.append(num%10)
+            num=num//10
+        p.sort()
+        print(p)
+        sup=sorted(p,reverse=True)
+        print(p)
+        while p[0]==0:
+            p.pop(0)
+            z+=1
+        
+        while z>0:
+            p.insert(1,0)
+            z-=1
+        stri=''
+        if n>0:
+            for i in p:
+                stri=stri+str(i)
+            return int(stri)
+        else:
+            stri='-'
+            for i in sup:
+                stri=stri+str(i)
+            return int(stri)
