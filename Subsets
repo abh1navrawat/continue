@@ -1,0 +1,38 @@
+Given an integer array nums of unique elements, return all possible subsets (the power set).
+
+The solution set must not contain duplicate subsets. Return the solution in any order.
+
+
+
+
+
+
+ intuition -  Recursive approach is suited for this solution. Create 2 arrays,res array will store the final array, subset will be a temporary array. create_subset will be the function that will create
+              new subsets, create_subset will only have one integer parameter (i). The create_subset will be over when i will be equal to the len of nums. For each element in nums,
+              include it in the subset and recursively call create_subset with the next index (i+1). After the recursive call, remove the last element from the subset to backtrack,
+              and recursively call create_subset with the same index (i+1).
+
+
+              For each element we have 2 choice either we pick it or not. We will do both, susbet.append will pick the element and subset.pop will remove it (doesn't pick).
+              At the end we will have all the subsets.
+
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        subset = []
+
+        def create_subset(i):
+            if i == len(nums):
+                res.append(subset[:])
+                return
+            
+            subset.append(nums[i])
+            create_subset(i+1)
+
+            subset.pop()
+            create_subset(i+1)
+
+        create_subset(0)
+        return res
