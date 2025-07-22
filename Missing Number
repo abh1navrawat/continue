@@ -11,3 +11,18 @@ class Solution:
                 break
             i+=1
         return i
+
+
+
+
+2 years later - 
+
+intuition - self explanatory
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        for i in range(len(nums)):
+            if i!=nums[i]:
+                return i
+        return len(nums)
