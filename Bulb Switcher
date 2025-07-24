@@ -1,0 +1,27 @@
+There are n bulbs that are initially off. You first turn on all the bulbs, then you turn off every second bulb.
+
+On the third round, you toggle every third bulb (turning on if it's off or turning off if it's on). For the ith round, you toggle every i bulb. For the nth round, you only toggle the last bulb.
+
+Return the number of bulbs that are on after n rounds.
+
+
+
+
+
+intuition - It is forming a pattern. For n=4 it is [1 0 0 1], 2 bulbs off. After that continous 4 bulbs will be off then only a turned on bulb will appear [1 0 0 1 0 0 0 0 1]. After that 8 bulbs will be off.
+            It forms a pattern which is (no. of 0s between the last two appeared 1s) x 2.
+
+            That also indicates that the i no. of bulb is on only on when its on i**2 turn
+            2 no. of bulbs on at 2**2 = 4th turn
+            3 no. of bulbs on at 3**2 = 9th turn
+            so on....
+
+            So just find the square root of n, that will be the number of bulbs turned on. Conver it to int(from float) so that it will provide the floored value
+
+
+
+
+
+class Solution:
+    def bulbSwitch(self, n: int) -> int:
+        return int(n**(1/2))
