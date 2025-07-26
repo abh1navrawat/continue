@@ -18,3 +18,30 @@ class Solution:
             else:
                 r -= 1
         return area
+
+
+
+
+
+2 years down the road......
+
+
+
+intuition - Place 1st pointer at the left-end and the another at the right-end. Whichever side is smaller will be incremented(skipped) so that much bigger area can come, if possible.  
+            (right-left) will give the distance between the 2 verical lines. min(height[right], height[left]) because its given that the container cannot be slanted so we have to take the lower side.
+            ans will only change if a larger area comes before us.
+
+
+
+
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left,right,ans = 0,len(height)-1,0
+        while left <= right:
+            ans = max(ans, min(height[right], height[left]) * (right-left))
+            if height[right] > height[left]:
+                left+=1
+            else:
+                right-=1
+        return ans
