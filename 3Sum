@@ -54,6 +54,10 @@ intuition - break the array into +ve,-ve and 0s. Make the +ve and -ve array into
             into the res set. If +ve array is a number that equal to the um of 2 negaative number multiplied by -1, add those 3 number in the res set. CHeck in case of -ve set. Return res in array form
             because output cannot be set form
 
+            This question is little ambiguous even. At the end of example 1 it i written the order does not matter but it will throw an error if you return the array in a different order
+            So we need to sort the array. 
+            
+            res.add(tuple(sorted([n[i],n[j],target]))) , set cannot sort so we have to sort the tupple then convert it to set.
 
 
 
