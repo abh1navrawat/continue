@@ -5,9 +5,39 @@ You may assume that each input would have exactly one solution, and you may not 
 You can return the answer in any order.
 
 
+intuition - Nested loop, worst time complexity. Just matching oif the sum of both number(same list different index) will provide the target, if yes return those indexes.
+
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i in range(len(nums)-1):
             for j in range(i+1,len(nums)):
                 if nums[i]+nums[j] == target:
                     return [i,j]
+
+
+
+
+time complexity - log(n)
+
+
+
+intuition - inspired while doing 3sum. Iterate over nums if nums[i] subtracted from the target is in the nums list then return the position of those 2 numbers. 
+            If u dont replace the original number it will return the same index for both values( because index find the first occurence of that number an return it. (we have to use index because we didn't
+            actually found the number). array dont have to the replace method so we have to pop then replace,( why 555 ? because it was the first nmber that came to my head).
+
+
+
+
+
+
+
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for i in range(len(nums)):
+    
+            s=target-nums[i]
+            nums.pop(i)
+            nums.insert(i,555)
+            if s in nums:
+                return [i,nums.index(s)]
