@@ -23,3 +23,32 @@ class Solution:
                 dp[i&1][j] = dp[(i-1)&1][j] + dp[i&1][j-1]
         return dp[(m-1)&1][-1]
 
+
+
+
+
+intuition - If we can only move right and down then each cell value is the sum of the paths coming from the cell above and the cell to the left
+
+            For example, 3x3 grid.
+
+            1   1   1
+            1   2   3
+            1   3   6
+
+            Set the first row of 1s only because only 1 way to reach. after that change the value of the cell by calculating the sum of left and above cell. Return the last value.
+
+
+
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        
+        aboveRow = [1] * n
+
+        for i in range(m - 1):
+            currentRow = [1] * n
+            for j in range(1, n):
+                currentRow[j] = currentRow[j-1] + aboveRow[j]
+            aboveRow = currentRow
+        
+        return aboveRow[-1]
