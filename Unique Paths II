@@ -33,3 +33,49 @@ class Solution:
                 current[j] = 0 if obstacleGrid[i][j] == 1 else current[j-1] + previous[j]
             previous = current
         return previous[n-1]
+
+
+
+
+
+intuition - Cannot use   res=[[0]*len(z[0])]*len(z)  This doesn’t create independent rows. It creates multiple references to the same list. So when you change res[i][0], it updates all rows simultaneously
+            Python reuses the same list reference when you use *. Thats why need to use comprehension because iteration create different memory addresses.
+
+            Unlke above solution, we are just putting 1 in the 1st row and 1st column of res (only 1 way to reach) if the there are any obstacle break the loop.
+            Now same as the above solution, just add the left and above value. Return the last element. 
+            if obstacleGrid==[[0]] condition is for the last testcase. if obstacleGrid[0][0]==1 is when the 1st path is blocked then return 0 because we cannot advance from there on.
+
+
+
+
+
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        if obstacleGrid[0][0]==1:
+            return 0
+
+        if obstacleGrid==[[0]]:
+            return 1
+        res = [[0]*len(obstacleGrid[0]) for _ in range(len(obstacleGrid))]
+
+        m,n=len(obstacleGrid),len(obstacleGrid[0])
+
+        for i in range(1,n):
+            if obstacleGrid[0][i]==1:    
+                break
+            res[0][i]=1
+
+        for i in range(1,m):
+            if obstacleGrid[i][0]==1:
+                res[i][0]=0
+                break
+            res[i][0]=1
+        
+        for i in range(1,m):
+            for j in range(1,n):
+                if obstacleGrid[i][j]==1:
+                    res[i][j]=0
+                    continue
+                res[i][j]=res[i-1][j]+res[i][j-1]
+        return res[-1][-1]
+                
