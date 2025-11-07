@@ -19,3 +19,17 @@ class Solution:
             for j in range(i+1):
                 triangle[i][j]+=min(triangle[i-1][j-(j==i)],triangle[i-1][j-(j>0)])
         return min(triangle[-1])
+
+
+
+intuition - start from the second last row add min of directly below row ele or diagonal right below ele. No need to make new list just add onto the current row of the triangle. Bottom to top approach, 
+            iterate in reverse.{ len(triangle)-2,-1,-1) } start = -2 to indicate the second last row ,end =  iterate till -1 so it will take 0th row also, step = -1 to tell it is in reverse.
+            
+
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        
+        for i in range(len(triangle)-2,-1,-1):
+            for j in range(i + 1 ):
+                triangle[i][j]+=min(triangle[i+1][j],triangle[i+1][j+1])
+        return triangle[0][0]
