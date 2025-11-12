@@ -1,0 +1,19 @@
+Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
+
+Return the array in the form [x1,y1,x2,y2,...,xn,yn].
+
+
+
+
+intuition - couldn't do it the same array(nums). Had to create a new array. Add 2 ele in the new array in a single iteration. every time the given array is twice the size of n . SO just iterate over range n and 
+            2 ele at the same time.
+
+
+
+class Solution:
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        res=[]
+        for i in range(n):
+            res.append(nums[i])
+            res.append(nums[i+n])
+        return res
