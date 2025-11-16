@@ -1,0 +1,27 @@
+You have a set of integers s, which originally contains all the numbers from 1 to n. Unfortunately, due to some error, one of the numbers in s got duplicated to another number in the set, which results in repetition of one number and loss of another number.
+
+You are given an integer array nums representing the data status of this set after the error.
+
+Find the number that occurs twice and the number that is missing and return them in the form of an array.
+
+
+
+
+intuition - create a array v that will count the number of occurence of each digit by iterating through the num. Now iterate again and see the digit the occur twice that will be the dublicate and the digit that
+            doesn't come is the missing one. return them
+class Solution:
+    def findErrorNums(self, nums):
+        n = len(nums)
+        v = [0] * (n + 1)
+        missing, duplicate = 0, 0
+
+        for i in nums:
+            v[i] += 1
+
+        for i in range(1, len(v)):
+            if v[i] == 2:
+                duplicate = i
+            if v[i] == 0:
+                missing = i
+
+        return [duplicate, missing]
