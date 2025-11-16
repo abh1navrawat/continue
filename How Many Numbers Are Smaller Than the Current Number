@@ -1,0 +1,24 @@
+Given the array nums, for each nums[i] find out how many numbers in the array are smaller than it. That is, for each nums[i] you have to count the number of valid j's such that j != i and nums[j] < nums[i].
+
+Return the answer in an array.
+
+
+
+
+
+intuition - Creating a dict will help in avoiding the duplicates while keeping the smaller number count. enumerate will keep the index and the value count at the same time. At last return the value mapped as per the
+            nums.
+
+
+
+
+
+class Solution:
+    def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+        sorted_nums = sorted(nums)
+        rank = {}
+        
+        for i, n in enumerate(sorted_nums):
+            if n not in rank:
+                rank[n] = i
+        return [rank[n] for n in nums]
