@@ -3,7 +3,9 @@ Given an array nums of n integers where nums[i] is in the range [1, n], return a
 
 
 
+
 intuition - Make it a set to remove duplicate items then check if i is present in the set of nums, if not append it to a array. return that array
+
 
 
 
@@ -16,3 +18,24 @@ class Solution:
             if i not in s:
                 p.append(i)
         return p
+
+
+
+
+
+
+intuition - Use set not only to remove duplicate but If we check directly while nums is in array form, the time complexity will be O(n^2). that is because array takes o(n) 
+            for searching but set search using hashing thats why it takes 0(1) times complexity.
+
+
+
+
+
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        s=set(nums)
+        res=[]
+        for i in range(1,len(nums)+1):
+            if i not in s:
+                res.append(i)
+        return res
