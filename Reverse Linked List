@@ -1,0 +1,28 @@
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+
+
+
+intuition - we will create a node that will store the first value after the linked list is reversed. So we will start it with None (because first head will become last at the end that will point to nowhere).
+            Initiate a while loop what will break when head is False(None). We want temp to store the head.next beacuse the new head.next will store node. Node will become head and we will move to next element.
+
+            1 -> 2 -> 3 then,     None <- 1  2 -> 3, then      None <- 1 <- 2  3 then    None <- 1 <- 2 <- 3
+
+
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        node = None
+
+        while head:
+            temp = head.next
+            head.next = node
+            node = head
+            head = temp
+        
+        return node
