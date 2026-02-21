@@ -1,0 +1,27 @@
+Given a string containing just the characters '(' and ')', return the length of the longest valid (well-formed) parentheses substring.
+
+
+
+
+intuition - Solved by using stack. Just keep storing the index of '('. If ')' appears then pop the stack and check which is bigger previously stored max_length or (curr_idx - top_stack). If the () are not 
+            consecutive then the index of ( will be stored in the top of stack
+
+
+
+
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        max_length = 0
+        stck=[-1]
+        for i in range(len(s)):
+            if s[i] == '(':
+                stck.append(i)
+                
+            else:
+                stck.pop()
+                if not stck:
+                    stck.append(i)
+                else:
+                    max_length=max(max_length, i-stck[-1])
+                    
+        return max_length
