@@ -4,8 +4,13 @@ Given a string containing just the characters '(' and ')', return the length of 
 
 
 intuition - Solved by using stack. Just keep storing the index of '('. If ')' appears then pop the stack and check which is bigger previously stored max_length or (curr_idx - top_stack). If the () are not 
-            consecutive then the index of ( will be stored in the top of stack
+            consecutive then the index of ( will be stored in the top of stack. start the stack with -1, and if popped insert the corrent stack otherwise couldn't pop it.
 
+            We have start with -1 in stack because if the start of s contain '()' then 1-(-1) will give 2 which is what we require.
+
+
+
+time complexity - O(n)
 
 
 
