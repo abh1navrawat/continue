@@ -1,0 +1,24 @@
+Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+
+
+
+
+intuition - Juck check whether it is a palindrome or not by comparing 1st and last element. If it doesn't match then leave that ele and compare str with reversed str. 
+            Consider str= 'abcdcbba'   In the 3rd iter, the b!=c so 1st leave b from the str and check whether it becomes palindrome and then check by removing c. If any1 of these removal led to str becoming
+            palindrome return True.
+
+
+
+
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+            p1=0
+            p2=len(s)-1
+            while p1<=p2:
+                if s[p1]!=s[p2]:
+                    string1=s[:p1]+s[p1+1:]
+                    string2=s[:p2]+s[p2+1:]
+                    return string1==string1[::-1] or string2==string2[::-1]
+                p1+=1
+                p2-=1
+            return True
