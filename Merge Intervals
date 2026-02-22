@@ -1,0 +1,28 @@
+Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
+
+
+
+
+
+intuition - just the list. if the ans is empty or intervals are not merging. Add them to the list, otherwise if they are merging then just change the end interval of the last appended interval to whichever ine is
+            bigger. the previous end interval or the new end interval.
+
+
+
+
+
+
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals = sorted(intervals, key=lambda x: x [0])
+
+        ans = []
+
+        for interval in intervals:
+            if not ans or ans[-1][1] < interval[0]:
+                ans.append(interval)
+            else:
+                ans[-1][1] = max(ans[-1][1], interval[1])
+        
+        return ans
