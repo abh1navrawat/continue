@@ -1,0 +1,44 @@
+You are standing at position 0 on an infinite number line. There is a destination at position target.
+
+You can make some number of moves numMoves so that:
+
+On each move, you can either go left or right.
+During the ith move (starting from i == 1 to i == numMoves), you take i steps in the chosen direction.
+Given the integer target, return the minimum number of moves required (i.e., the minimum numMoves) to reach the destination.
+
+
+
+
+intuition - Just take steps in the positive direction. Once the total exceed the target break the first loop then in another loop check whether the total-target is even or not. If so return the total no. of steps
+            Otherwise keep on taking steps until the difference between the total and target becomes even. 
+
+            We need to find even diff because the diff/2 should be a whole number. Whatever diff/2 is, if we flip that number(take the step in opposite direction we will get the required target.
+
+            if the number is target is 5, then 1+2+3 will give 6
+            6>5, 6-5 =1 cant do 1/2, so need to take extra step
+            1+2+3+4=10, 10-5=5 but cant do 5/2, so extra step
+            1+2+3+4+5=15, 15-5=10 if we divide 10/5 we get awhole number.
+            We can flip +5 to −5
+            0+1+2+3+4−5=5   and 5 is the target                                                                                                              
+
+                                                                                                                              
+
+
+
+
+
+class Solution:
+    def reachNumber(self, target: int) -> int:
+        target = abs(target)
+        step = total = 0
+
+        while total < target:
+            step += 1
+            total += step
+        
+        while (total - target) % 2 != 0:
+            step += 1
+            total += step
+
+        return step
+        
