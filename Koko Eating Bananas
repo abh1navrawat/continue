@@ -1,6 +1,7 @@
 Koko loves to eat bananas. There are n piles of bananas, the ith pile has piles[i] bananas. The guards have gone and will come back in h hours.
 
-Koko can decide her bananas-per-hour eating speed of k. Each hour, she chooses some pile of bananas and eats k bananas from that pile. If the pile has less than k bananas, she eats all of them instead and will not eat any more bananas during this hour.
+Koko can decide her bananas-per-hour eating speed of k. Each hour, she chooses some pile of bananas and eats k bananas from that pile. If the pile has less than k bananas, 
+she eats all of them instead and will not eat any more bananas during this hour.
 
 Koko likes to eat slowly but still wants to finish eating all the bananas before the guards return.
 
@@ -28,3 +29,44 @@ class Solution:
             else:
                 left = mid + 1
         return right
+
+
+
+
+
+
+3 yrs later - Solving in java now, some things to notice, still using the binary search but cannot use ceil directly now, because if you divide 2 ints it will automatically return int(ex- 5/3 = 1, if u ceil 
+              now it will just return 1, but the correct answer was 2). SO we have to use long and convert it to int later using type conversion
+
+
+
+
+
+
+
+
+class Solution {
+    public int minEatingSpeed(int[] piles, int h) {
+        int low=1;
+        int hig=0,ans=0;
+        for (int i:piles){
+            hig=Math.max(hig,i);
+        }
+        while(low<=hig){
+            int mid=low+(hig-low)/2;
+            long total=0;
+            for(int i:piles){
+                total+=(int)Math.ceil((double)i/mid);
+            }
+            if (total<=h){
+                ans=mid;
+                hig=mid-1;
+            }
+            else
+                low=mid+1;
+            
+            
+        }
+        return ans;
+    }
+}
