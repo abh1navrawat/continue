@@ -1,0 +1,33 @@
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+Find the maximum profit you can achieve. You may complete at most two transactions.
+
+Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).
+
+
+
+intuition - Buy represent ur balance after buying stock and sell represent ur balance after selling stock
+
+            instead of looking at the 2 transaction seperately, look at them as a continous sequence.
+            
+            So think as you start with 0 money, after purchase of stock it become negative. U have to keep ur losses
+            closest to zero to have max profit, so  buy1 = max(buy1, -prices[i]) in this formula buy is in negative and we are converting the price to negative also, so the max of these will be closed to zero.
+            First profit is what u will get after selling the first buy. After the 1st transaction u have to buy the 2nd stock from ur leftover profit. buy2 represent ur leftover balance so that why it need to 
+            be maximized.
+
+
+
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:        
+        buy1 = -prices[0]
+        sell1 = 0
+        buy2 = -prices[0]
+        sell2 = 0
+
+        for i in range(1, len(prices)):
+            buy1 = max(buy1, -prices[i])
+            sell1 = max(sell1, buy1 + prices[i])
+            buy2 = max(buy2, sell1 - prices[i])
+            sell2 = max(sell2, buy2 + prices[i])      
+        return sell2
