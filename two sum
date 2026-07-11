@@ -41,3 +41,26 @@ class Solution:
             nums.insert(i,555)
             if s in nums:
                 return [i,nums.index(s)]
+
+
+
+
+java - 
+
+
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer,Integer> res=new HashMap<>();
+        
+        int n=nums.length;
+        for(int i=0;i<n;i++){
+            int z=target-nums[i];
+            if (res.containsKey(z)){
+                return new int[]{res.get(z),i};
+            }
+            res.put(nums[i],i);
+        }
+        return new int[]{};
+    }
+}
