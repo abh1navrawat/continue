@@ -20,3 +20,29 @@ class Solution(object):
       for i in range(n):
           nums1[m+i] = nums2[i]
       nums1.sort()
+
+
+
+java solution - used 2 pointers. Give better time complexity(logN) than using sort after placing them in array(N logN).
+                as it is given these are non decreasing array we can copare the biggest(last) values of each array and place whuchever is bigger in the first array, and keep going until one of the constraint is
+                broken.
+
+
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i=m-1,j=n-1,k=m+n-1;
+        while(j>=0){
+            if (i>=0 && nums1[i]>nums2[j]){
+                nums1[k]=nums1[i];
+                k--;
+                i--;
+            }
+            else{
+                nums1[k]=nums2[j];
+                k--;
+                j--;
+            }
+        }
+    }
+}
