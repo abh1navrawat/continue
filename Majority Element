@@ -15,3 +15,26 @@ class Solution:
 
 
 runtime - 159ms   Memory - 17.74 MB
+
+
+
+
+
+java - hashmap - place each ele in hashmap, if it doesnt exist then put 1 or add one if it is already in hashmap, return the key whose value comes more than half of array length.
+
+
+
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+
+for (int n:nums){
+	map.put(n,map.getOrDefault(n,0)+1);
+
+	if (map.get(n)> nums.length/2){
+		return n;
+}
+}
+return -1;
+    }
