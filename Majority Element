@@ -38,3 +38,35 @@ for (int n:nums){
 }
 return -1;
     }
+
+
+
+
+Boyer Moore Voting Algortihm -
+
+
+
+intuition - if the element is appearing more than the half of the legth of the array, then if we make a count variable that is incremented if any duplicate appear and decremented if another number comes
+			.If count hit 0, we swap to current num, after travesing the whole array we still have the count in positive (because the number comes more than half of the length times). We will just return the 
+			Current num
+
+
+
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count=0,res=0;
+        for (int i:nums){
+            if (count==0){
+                res=i;
+            }
+            if (res==i){
+                count++;
+            }
+            else{
+                count--;
+            }
+        }
+        return res;
+    }
+}
