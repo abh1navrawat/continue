@@ -1,0 +1,38 @@
+You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.
+
+Return true if you can reach the last index, or false otherwise.
+
+ 
+
+
+
+intuition - First tried in reverse but if there is a 0 (game ender) in starting it wouldnt be caught
+            So start from the beginning, Check and update res if the curr ele is bigger. After each iteration we will decrease res(because jumping to the next index will reduce the overall jump by 1) and
+            if res becomes 0(we have hit a wall, cannot move any further) return false. and if we jump from the current index and we can reach the last index( or over it) then return true
+
+
+
+
+
+class Solution {
+    public boolean canJump(int[] nums) {
+        int res=0;
+        int n=nums.length-1;
+
+        if(n==0){
+            return true;
+        }
+        for (int i=0;i<n;i++){       
+            res=Math.max(res,nums[i]);
+            
+            if (res==0){
+                return false;
+            }
+            else if(res+i>=n){
+                return true;
+            }
+            res--;
+        }
+        return false;
+    }
+}
