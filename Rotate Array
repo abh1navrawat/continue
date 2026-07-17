@@ -21,3 +21,52 @@ class Solution:
             nums.pop()
             k-=1
         return nums
+
+
+java- 
+
+
+intuition - using a temp array - creating a temp array perform rotations in that and paste it back to original array. 
+                                 arr[(i+k)%l]=nums[i] --> If we just do (i+k) it will lead to out of bound error for indexes greater than array length, e want to make them to come at the starting after ending
+                                                          one cycle, so we just mod it by array length, so if i+k =6 and array length is of 5, the ele will be placed on 6%5 = 1 position. 
+
+
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int l=nums.length;
+        int[] arr=new int[l];
+        for(int i=0;i<l;i++){
+            arr[(i+k)%l]=nums[i];
+        
+        }
+        for (int i=0;i<l;i++){
+            nums[i]=arr[i];
+        }
+    }
+}
+
+
+
+in place traversal, O(1) space complexity. logiclly thinking if we rotate the whole array first then rotate then rotate the first kth elements and then the remaining elements we will get the desired array.
+
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int l=nums.length;
+        k=k%l;
+        rotated(nums,0,l-1);
+        rotated(nums,0,k-1);
+        rotated(nums,k,l-1);
+    }
+        private void rotated(int[] nums,int i,int j){
+            while(i<j){
+                int temp=nums[i];
+                nums[i]=nums[j];
+                nums[j]=temp;
+                i++;
+                j--;
+            }
+        }
+    
+}
