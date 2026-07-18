@@ -6,9 +6,7 @@ According to the definition of h-index on Wikipedia: The h-index is defined as t
 
 
 intuition - Sorting an array in reverse order then just checking H-Index condition (if the paper is cited more than the current index(just a simple count) then increment the res, if not return the lsat incremented
-            res. time complexity is not good . time complexity- 6ms ,Beats 29.00%
-
-
+            res. time complexity is not good . time complexity- 5ms ,Beats 72.61%
 
 
 
@@ -18,6 +16,7 @@ class Solution {
         Arrays.sort(citations);
         int res=0;
         int i=0,j=citations.length-1;
+
         while(i<j){
             int temp=citations[i];
             citations[i]=citations[j];
@@ -25,13 +24,51 @@ class Solution {
             i++;
             j--;
         }
+
         for(i=0;i<citations.length;i++){
             if(i>=citations[i]){
                 return res;
             }
             res++;
-        }   
+        }
         
         return res;
+    }
+}
+
+
+
+
+intuition - counting sort(bucket sort) - O(n) time complexity - all the papers which have more citation than number of papers will pass the H-Index test (they will increase the H-index).
+            We just have to check the remaining numbers. for that purpose we will create an array here Indices represent citation counts and values represent paper counts. any any ele with more citation
+            than the array.length can be considered as same becasue it ill increase the citation. At last we will just loop in reverse to check the H-index easily.
+
+
+
+
+
+
+class Solution {
+    public int hIndex(int[] citations) {
+        int n = citations.length;
+        int[] buckets = new int[n + 1];
+        
+        for (int c : citations) {
+            if (c >= n) {
+                buckets[n]++;
+            } else {
+                buckets[c]++;
+            }
+        }
+
+        int count = 0;
+        for (int i = n; i >= 0; i--) {
+            count += buckets[i];
+            if (count >= i) {
+                return i;
+            }
+        }
+        
+        return 0;
     }
 }
