@@ -1,0 +1,44 @@
+You are given a 0-indexed array of integers nums of length n. You are initially positioned at index 0.
+
+Each element nums[i] represents the maximum length of a forward jump from index i. In other words, if you are at index i, you can jump to any index (i + j) where:
+
+0 <= j <= nums[i] and
+i + j < n
+Return the minimum number of jumps to reach index n - 1. The test cases are generated such that you can reach index n - 1.
+
+
+
+ 
+
+intuition - Greedy - take the first num and check how farthest you can go after each jump, and the number which will lead to farthest becomes the current end(currend) and increase the jump by one.
+                     Iterate till current end becomes equal or larger than the last index.
+
+
+
+
+
+class Solution {
+    public int jump(int[] nums) {
+        int currend=0;
+        int farthest=0;
+        int jump=0;
+        int n=nums.length-1;
+
+        if(n==0){
+            return 0;
+        }
+        for(int i=0;i<n;i++){
+            if(i+nums[i]>=farthest){
+                farthest=i+nums[i];   
+            }
+            if(i==currend){
+                currend=farthest;
+                jump+=1;
+            }
+            if(currend>=n){
+                return jump;
+            }
+        }
+        return -1;
+    }
+}
