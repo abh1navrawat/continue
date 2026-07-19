@@ -1,0 +1,34 @@
+Given an integer array nums, reorder it such that nums[0] < nums[1] > nums[2] < nums[3]....
+
+You may assume the input array always has a valid answer.
+
+
+
+
+intuition - Whenever a problems tells us it needs to have specific order( in this case, first smaller then biiger then smaller again), most of the time we have to sort. The sorted array needs to broken down into
+            2 halves. Starting point of both left and right should be the end of the halves. That will ensure that the identical elements are farthest to each other. Then just start positioning the elements
+            in the required order.
+
+
+
+
+import java.util.Arrays;
+
+class Solution {
+    public void wiggleSort(int[] nums) {
+        int n = nums.length;
+        int[] clone = nums.clone();
+        Arrays.sort(clone);
+        
+        int left = (n - 1) / 2;
+        int right = n - 1;
+        
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0) {
+                nums[i] = clone[left--];
+            } else {
+                nums[i] = clone[right--];
+            }
+        }
+    }
+}
