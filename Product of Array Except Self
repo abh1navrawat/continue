@@ -14,6 +14,10 @@ Intuition - Create 2 lists with length of nums. Create 2 variable prefix and pos
             create a result array, insert the multiplied values if both the list and return result
 
 
+                                    ^
+                                    |
+
+                            trash intuition 
 
 
 
@@ -32,3 +36,36 @@ class Solution:
         for k in range(len(nums)):
             res.append(list1[k]*list2[k])
         return res
+
+
+
+
+
+
+java - last time was O(3n), now achieved O(2n).
+
+            Whenever we found a question stating we have to find something (product,sum,etc) we have to make 2 array and go from left to right then right to left(can do vice versa).
+
+
+
+
+
+
+
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int n=nums.length-1;
+        int[] answer=new int[n+1];
+        int var=1;
+        for(int i=n;i>=0;i--){
+            answer[i]=var;
+            var*=nums[i];
+        }
+        var=1;
+        for(int i=0;i<=n;i++){
+            answer[i]*=var;
+            var*=nums[i];
+        }
+        return answer;
+    }
+}
