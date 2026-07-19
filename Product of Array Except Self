@@ -44,7 +44,7 @@ class Solution:
 
 java - last time was O(3n), now achieved O(2n).
 
-            Whenever we found a question stating we have to find something (product,sum,etc) we have to make 2 array and go from left to right then right to left(can do vice versa).
+            Whenever we found a question stating we have to find something (product,sum,etc) except self, we have to make 2 array and go from left to right then right to left(can do vice versa).
 
 
 
