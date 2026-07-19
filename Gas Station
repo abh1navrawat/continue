@@ -1,0 +1,45 @@
+There are n gas stations along a circular route, where the amount of gas at the ith station is gas[i].
+
+You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from the ith station to its next (i + 1)th station. You begin the journey with an empty tank at one of the gas stations.
+
+Given two integer arrays gas and cost, return the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return -1. If there exists a solution, it is guaranteed to be unique.
+
+
+
+
+
+
+intuition - if the total cost os more than total gas, then it is impossible to do full rotation(return -1). If you are travelling from A station, and you cross B and C stations but while going to D station your
+            gas goes below 0 then A is not the starting point and B and C also cannot be the starting points because u arrived at B and C with some leftover gas, you cannot reach D with those station gas only.
+            Take the next station as the starting point
+
+
+
+
+
+
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int totalGas = 0;
+        int totalCost = 0;
+        int currentTank = 0;
+        int starting = 0;
+        
+        for (int i = 0; i < gas.length; i++) {
+            totalGas += gas[i];
+            totalCost += cost[i];
+            currentTank += gas[i] - cost[i];
+            
+            if (currentTank < 0) {
+                starting = i + 1;
+                currentTank = 0;
+            }
+        }
+        
+        if (totalGas < totalCost){
+            return -1;
+        }
+        return starting;
+    }
+
+}
