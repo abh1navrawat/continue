@@ -10,6 +10,8 @@ intuition -  Create a dictionary. Insert the elements of the list in the diction
              then only one element will remain in the dictionary. Return that element. 
 
 
+                        WRONG ANSWER   O(n) space complexity
+
 
 
 class Solution:
@@ -22,3 +24,25 @@ class Solution:
                 dict1.pop(i)
         for i in dict1.keys():
             return i
+
+
+
+java - use bit manipulation - XOR (^) operator will take the bit if it is different, if it has came before then the number and its duplicate will be just cancelled. 
+       If it is same as previously came bit, it just remove both of them(becomes 0) as it is stated a unique number will be available in the array. Just return the remaining bit.
+       It will be the only number which is not cancelled by its duplicate. 
+
+The JVM convert those numbers first in binary then perform XOR.
+
+If the duplicates would have appeared more than twice( odd times) this solution will not work.
+
+
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        int res=0;
+        for(int i=0;i<nums.length;i++){
+          res^=nums[i];
+        }  
+        return res;
+    }
+}
