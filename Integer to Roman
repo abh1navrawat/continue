@@ -37,3 +37,37 @@ class Solution:
                 n += rom[i]
                 num-=i
         return n
+
+
+
+
+
+
+java- time complexity is 0(1) - outer loop can only iterate at max 13(val length) times. Inner loop can go only 3 times(as the constraints of num < 4000).
+
+            Traversing in val till number is greater than 0. those 2 arrays works same as a hashmap., whenever ith alue of val is being subtracted from nums, ith symbol is appended in StringBuffer
+            Using StringBuffer becasue String is immutable in nature. So we can keep adding in stringbuffer without creating new object each time.
+
+
+
+
+
+class Solution {
+    public String intToRoman(int num) {
+        StringBuffer res=new StringBuffer();
+
+        int[] val={1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] symbol={"M", "CM", "D",  "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        for(int i=0;i<val.length;i++){
+            if(num==0){
+                break;
+            }
+            while(num>=val[i]){
+                res.append(symbol[i]);
+                num-=val[i];
+            }
+            }
+
+        return res.toString();
+    }
+}
