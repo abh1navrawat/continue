@@ -18,3 +18,34 @@ class Solution:
                 return z
             z+=s[0][i]
         return z
+
+
+
+
+java
+
+intuition - use stringbuffer because strings is immutable but change stringbuffer back to string while returning(because our method accept string as the output).
+            Sorting because first and the last strings of the array will be the most different ones. Then just compare both elements , and return the part that matches.
+
+
+
+
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+       StringBuffer sb=new StringBuffer();
+       if (strs == null || strs.length == 0) {
+            return "";
+        }
+       Arrays.sort(strs);
+       int s=Math.min(strs[0].length(),strs[strs.length-1].length());
+       for(int i=0;i<s;i++){
+            if(strs[0].charAt(i) != strs[strs.length-1].charAt(i)){
+                break;
+            }
+            sb.append(strs[0].charAt(i));
+       }
+       
+       return sb.toString();
+    }
+}
